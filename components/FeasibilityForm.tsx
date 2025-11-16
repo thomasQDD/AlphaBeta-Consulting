@@ -12,7 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { ArrowLeft, ArrowRight, Download, CheckCircle } from 'lucide-react';
 import { generatePDF } from '../utils/pdfGenerator';
 
-interface FormData {
+export interface FormData {
   // Informations générales
   businessName: string;
   businessType: 'product' | 'service' | '';
@@ -217,7 +217,7 @@ export function FeasibilityForm({ onComplete, onBack }: FeasibilityFormProps) {
     realisticMonths: 0,
   });
 
-  const updateField = (field: keyof FormData, value: any) => {
+  const updateField = (field: keyof FormData, value: string | number | boolean | string[] | number[]) => {
     setFormData(prev => {
       const updated = { ...prev, [field]: value };
 
@@ -231,7 +231,7 @@ export function FeasibilityForm({ onComplete, onBack }: FeasibilityFormProps) {
       }
 
       if (field === 'monthsToReachSalary') {
-        updated.realisticMonths = value * 3; // hypothèse coefficient 3
+        updated.realisticMonths = (value as number) * 3; // hypothèse coefficient 3
       }
 
       // Validation M * N = B
@@ -341,7 +341,7 @@ export function FeasibilityForm({ onComplete, onBack }: FeasibilityFormProps) {
 
               <div className="text-center pt-4">
                 <Button variant="ghost" onClick={onBack}>
-                  Retour à l'accueil
+                  Retour à l&apos;accueil
                 </Button>
               </div>
             </div>
@@ -577,7 +577,7 @@ export function FeasibilityForm({ onComplete, onBack }: FeasibilityFormProps) {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="numberOfPartners">Nombre d'associés (hors toi)</Label>
+                    <Label htmlFor="numberOfPartners">Nombre d&apos;associés (hors toi)</Label>
                     <Input
                       id="numberOfPartners"
                       type="number"
@@ -657,7 +657,7 @@ export function FeasibilityForm({ onComplete, onBack }: FeasibilityFormProps) {
               {formData.isSeasonal && (
                 <>
                   <div className="space-y-3">
-                    <Label>Sélectionne les 3 mois de fort chiffre d'affaires</Label>
+                    <Label>Sélectionne les 3 mois de fort chiffre d&apos;affaires</Label>
                     <div className="grid grid-cols-3 gap-2">
                       {['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'].map((month) => (
                         <Button
@@ -682,7 +682,7 @@ export function FeasibilityForm({ onComplete, onBack }: FeasibilityFormProps) {
                   </div>
 
                   <div className="space-y-3">
-                    <Label>Sélectionne les 3 mois de faible chiffre d'affaires</Label>
+                    <Label>Sélectionne les 3 mois de faible chiffre d&apos;affaires</Label>
                     <div className="grid grid-cols-3 gap-2">
                       {['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'].map((month) => (
                         <Button
@@ -751,7 +751,7 @@ export function FeasibilityForm({ onComplete, onBack }: FeasibilityFormProps) {
               <h3>Autorisations et réglementations</h3>
 
               <div className="space-y-3">
-                <Label>As-tu besoin d'autorisations, d'habilitations, de diplômes ou autres pour exercer ?</Label>
+                <Label>As-tu besoin d&apos;autorisations, d&apos;habilitations, de diplômes ou autres pour exercer ?</Label>
                 <RadioGroup
                   value={formData.needsAuthorizations ? 'yes' : 'no'}
                   onValueChange={(value) => updateField('needsAuthorizations', value === 'yes')}
@@ -833,7 +833,7 @@ export function FeasibilityForm({ onComplete, onBack }: FeasibilityFormProps) {
 
               {formData.businessType === 'product' && (
                 <div className="space-y-2">
-                  <Label htmlFor="targetRevenueProduct">Chiffre d'affaires cible mensuel - Produit (€)</Label>
+                  <Label htmlFor="targetRevenueProduct">Chiffre d&apos;affaires cible mensuel - Produit (€)</Label>
                   <Input
                     id="targetRevenueProduct"
                     type="number"
@@ -847,7 +847,7 @@ export function FeasibilityForm({ onComplete, onBack }: FeasibilityFormProps) {
 
               {formData.businessType === 'service' && (
                 <div className="space-y-2">
-                  <Label htmlFor="targetRevenueService">Chiffre d'affaires cible mensuel - Service (€)</Label>
+                  <Label htmlFor="targetRevenueService">Chiffre d&apos;affaires cible mensuel - Service (€)</Label>
                   <Input
                     id="targetRevenueService"
                     type="number"

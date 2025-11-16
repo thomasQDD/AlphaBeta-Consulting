@@ -2,24 +2,9 @@
 
 import { useState } from 'react';
 import { Hero } from '@/components/Hero';
-import { FeasibilityForm } from '@/components/FeasibilityForm';
+import { FeasibilityForm, FormData } from '@/components/FeasibilityForm';
 import { AccountModal } from '@/components/AccountModal';
 import { ShareModal } from '@/components/ShareModal';
-
-interface FormData {
-  businessName: string;
-  businessType: string;
-  targetMarket: string;
-  initialInvestment: number;
-  monthlyRevenue: number;
-  experience: string;
-  hasTeam: string;
-  location: string;
-  timeline: string;
-  marketingBudget: number;
-  competitors: string;
-  uniqueValue: string;
-}
 
 export default function Home() {
   const [showForm, setShowForm] = useState(false);
